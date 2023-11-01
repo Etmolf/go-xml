@@ -592,6 +592,9 @@ func (p *printer) marshalValue(val reflect.Value, finfo *fieldInfo, startTemplat
 				if (fk == reflect.Pointer || fk == reflect.Interface) && fv.IsNil() {
 					continue
 				}
+				if fk == reflect.Slice && isEmptyValue(fv) {
+					continue
+				}
 
 				have = true
 				break
